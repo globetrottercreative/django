@@ -1,7 +1,7 @@
 {
 "version": 3,
 "mappings": "AAAA,4BAA4B;AAU5B,0BAA0B;AAE1B,UAAW;EACP,KAAK,EAAE,KAAK",
-"sources": ["../../SCSS/style.scss"],
+"sources": ["../../../SCSS/dashboard/style.scss"],
 "names": [],
 "file": "style.css"
 }
