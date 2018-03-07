@@ -65,7 +65,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'leon$default',
         'USER': 'leon',
-        'PASSWORD': '',
+        'PASSWORD': 'DBPassword1',
         'HOST': 'leon.mysql.pythonanywhere-services.com',
         'PORT': ''
     }
