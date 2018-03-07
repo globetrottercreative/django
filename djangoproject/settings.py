@@ -62,8 +62,12 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'leon$default',
+        'USER': 'leon',
+        'PASSWORD': '',
+        'HOST': 'leon.mysql.pythonanywhere-services.com',
+        'PORT': ''
     }
 }
 
