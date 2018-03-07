@@ -3,6 +3,6 @@ from django.shortcuts import render
 def catcher(request):
 
     data = {
-        'name': ''
+        'name': 'I\'m The Name'
     }
     return render(request, 'dashboard/index.html', data)
