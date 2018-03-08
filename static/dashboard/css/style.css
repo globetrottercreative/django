@@ -6,4 +6,12 @@
     #searchform form h5 {
       margin-bottom: 10px; }
 
+#loginform {
+  margin: 40px; }
+  #loginform form {
+    padding: 30px 20px 40px 20px;
+    max-width: 15rem; }
+    #loginform form h1 {
+      margin-bottom: 10px; }
+
 /*# sourceMappingURL=style.css.map */
