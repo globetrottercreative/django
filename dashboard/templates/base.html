@@ -4,10 +4,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-
+    {% block head %}
     <title>CryptoDash</title>
-    <meta name="description" content="Test Django Blog">
+    <meta name="description" content="CryptoDash"> {% endblock %}
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/style.css' %}" />
@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    {% block nav %}
     <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/"><img src="{% static 'dashboard/img/eth512.png' %}" width="30" height="30" alt="CryptoDash Logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,13 +32,15 @@
             </ul>
         </div>
     </nav>
-
+    {% endblock %}
     <div class="container-fluid">
         {% block content %} {% endblock %}
-        <br>
+    </div>
+    <div class="container">
         <a href="/admin">Admin Login</a>
     </div>
 
+    {% block footer %} {% endblock %}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
