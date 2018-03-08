@@ -9,6 +9,6 @@ def catcher(request):
         'name': 'I\'m The Name',
         'form': form
     }
-    return render(request, 'dashboard/index.html', data)
+    return render(request, 'dashboard/search.html', data)
 
 
