@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,WAAY;EACR,SAAS,EAAE,KAAK;;AAGpB,UAAW;EACP,KAAK,EAAE,KAAK",
+"mappings": "AAAA,WAAY;EACR,MAAM,EAAE,IAAI;EACZ,SAAS,EAAE,KAAK",
 "sources": ["../../../SCSS/dashboard/style.scss"],
 "names": [],
 "file": "style.css"
