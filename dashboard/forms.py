@@ -7,14 +7,14 @@ class SearchForm(forms.Form):
     Crypto = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
 
 class RegistrationForm(UserCreationForm):
+    user = UserProfile.user
     class Meta:
         model = UserProfile
         fields = (
             'user', 
             'base_fiat',
             'base_crypto',
-            'last_spot',
-
+            'last_spot'
         )
 
     def save(self, commit=True):
