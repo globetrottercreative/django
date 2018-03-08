@@ -6,7 +6,6 @@ from django.contrib.auth.forms import UserChangeForm
 def catcher(request):
     form = SearchForm()
     user = request.user
-    print(user)
     data = {
         'name': 'I\'m The Name',
         'form': form,

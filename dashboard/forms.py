@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from dashboard.models import UserProfile
 from django.contrib.auth.forms import UserCreationForm
 
 class SearchForm(forms.Form):
@@ -7,27 +7,23 @@ class SearchForm(forms.Form):
     Crypto = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-
     class Meta:
-        model = User
+        model = UserProfile
         fields = (
-            'username', 
-            'first_name', 
-            'last_name', 
-            'email', 
-            'password1', 
-            'password2'
+            'user', 
+            'base_fiat',
+            'base_crypto',
+            'last_spot',
+
         )
 
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.email = self.cleaned_data['email']
+        user.base_fiat = self.cleaned_data['email']
+        user.base_crypto = self.cleaned_data['email']
 
         if commit:
-            user.save();
+            user.save()
 
         return user
 
