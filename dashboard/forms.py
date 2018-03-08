@@ -1,12 +1,11 @@
 from django import forms
 from dashboard.models import UserProfile
-from django.contrib.auth.forms import UserCreationForm
 
 class SearchForm(forms.Form):
     Fiat = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
     Crypto = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
 
-class RegistrationForm(UserCreationForm):
+class RegistrationForm(forms.Form):
     user = UserProfile.user
     class Meta:
         model = UserProfile
