@@ -1,5 +1,9 @@
 #searchform {
-  margin: 60px;
-  max-width: 10rem; }
+  margin: 40px; }
+  #searchform form {
+    padding: 30px 20px 40px 20px;
+    max-width: 15rem; }
+    #searchform form h5 {
+      margin-bottom: 10px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,15 +1,9 @@
 {% extends 'dashboard/layout.html' %} {% block content%}
 <div id="searchform">
-    <form>
-        <div class="form-group">
-            <label for="input_fiat">Local Fiat</label>
-            <input type="text" class="form-control" id="input_fiat" placeholder="NZD">
-        </div>
-        <div class="form-group">
-            <label for="input_crypto">Crypto Currency</label>
-            <input type="text" class="form-control" id="input_crypto" placeholder="ETH">
-        </div>
-        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+    <form method="post" class="border border-primary">
+        {%csrf_token %}
+        <div class="form-group">{{form}}</div>
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
     </form>
 </div>
 {% endblock %}
