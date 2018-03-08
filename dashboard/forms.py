@@ -8,6 +8,8 @@ class SearchForm(forms.Form):
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True) #overwrite forms email field to be required
+    fiat = forms.CharField()
+    crypto = forms.CharField()
     class Meta:
         model = User
         fields ={
