@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^logout/$', logout, {'template_name': 'dashboard/logout.html'}),
     url(r'^home/$', views.home, name='search_crypto'),
     url(r'^edit/$', views.edit, name='edit_profile'),
-    url(r'^register/$', views.registration, name='registration'),
+    url(r'^registration/$', views.registration, name='registration'),
 ]
