@@ -30,9 +30,11 @@ def editprofile(request):
             form.save()
             return redirect('home/')
     else:
-        profiles = UserProfile.objects.filter(base_user=request.user.id)
-        print(profiles)
-        form = EditProfileForm(initial={'base_crypto': 'NZD'})
+        profiles = UserProfile.objects.get(base_user=request.user)
+        form = EditProfileForm(initial={
+            'base_crypto': profiles.base_crypto,
+            'base_fiat': profiles.base_fiat,
+            })
         args = {
             'form': form,
         }
