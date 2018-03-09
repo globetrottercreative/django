@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block body %}
 <div id=loginform>
-    <h1>Client Login</h1>
     <form method="post" class="border border-primary">
+        <h4>Client Login</h4>
         {% csrf_token %}
         <div class="form-group">
             {{ form }}

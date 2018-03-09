@@ -3,15 +3,13 @@ from .forms import SearchForm, RegistrationForm
 from dashboard.models import UserProfile
 from django.contrib.auth.forms import UserChangeForm
 # Create your views here.
-def catcher(request):
+def home(request):
     form = SearchForm()
     user = request.user
     data = {
-        'name': 'I\'m The Name',
-        'form': form,
-        'id_name': user
+        'user': user
     }
-    return render(request, 'dashboard/search.html', data)
+    return render(request, 'dashboard/home.html', data)
 
 def edit(request):
     if request.method == 'POST':
@@ -31,7 +29,7 @@ def registration(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home/')
+            return redirect('/')
     else:
         form = RegistrationForm()
         args = {
