@@ -30,12 +30,13 @@ def editprofile(request):
             form.save()
             return redirect('home/')
     else:
-        profiles = UserProfile.objects.get(base_user=request.user)
+        profile = UserProfile.objects.get(base_user=request.user)
         form = EditProfileForm(initial={
-            'base_crypto': profiles.base_crypto,
-            'base_fiat': profiles.base_fiat,
+            'base_crypto': profile.base_crypto,
+            'base_fiat': profile.base_fiat,
             })
         args = {
             'form': form,
+            'user': profile
         }
         return render(request, 'dashboard/editprofile.html', args)
