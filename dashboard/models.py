@@ -8,6 +8,8 @@ class UserProfile(models.Model):
     base_fiat = models.CharField(max_length=3, default='')
     base_crypto = models.CharField(max_length=3, default='')
     last_spot = models.FloatField(default=1.00)
+    def __str__(self):
+        return self.title
 
 def create_profile(sender, **kwargs):
     if kwargs['created']:

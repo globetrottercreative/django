@@ -37,7 +37,9 @@ class CreateUserForm(UserCreationForm):
 class EditProfileForm(forms.ModelForm):
     class Meta():
         model = UserProfile
-        fields = '__all__'  
+        fields = {
+            'base_fiat',
+            'base_crypto',}
         
 
     def save(self, commit=True):

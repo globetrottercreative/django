@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import EditProfileForm, CreateUserForm
 from dashboard.models import UserProfile
 from django.contrib.auth.forms import UserChangeForm
@@ -28,9 +28,11 @@ def editprofile(request):
         form = EditProfileForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('home/')
     else:
-        form = EditProfileForm()
+        profiles = UserProfile.objects.filter(base_user=request.user.id)
+        print(profiles)
+        form = EditProfileForm(initial={'base_crypto': 'NZD'})
         args = {
             'form': form,
         }
