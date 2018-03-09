@@ -48,6 +48,7 @@ class EditProfileForm(forms.ModelForm):
         user.base_crypto = self.cleaned_data['base_crypto']
         user.last_spot = 30
         user.base_user = self.instance
+        print(user.base_crypto)
         if commit:
             user.save()
 
