@@ -39,18 +39,15 @@ class EditProfileForm(forms.ModelForm):
         model = UserProfile
         fields = {
             'base_fiat',
-            'base_crypto',}
-
-
-        ##START HERE##
+            'base_crypto',
+            }
 
     def save(self, commit=True):
         user = super(EditProfileForm, self).save(commit=False)
         user.base_fiat = self.cleaned_data['base_fiat']
         user.base_crypto = self.cleaned_data['base_crypto']
         user.last_spot = 30
-      
-
+        user.base_user = self.instance
         if commit:
             user.save()
 
