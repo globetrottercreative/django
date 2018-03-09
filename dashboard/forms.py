@@ -1,24 +1,51 @@
 from django import forms
 from dashboard.models import UserProfile
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-class SearchForm(forms.Form):
-    Fiat = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    Crypto = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
-
-class RegistrationForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
+class CreateUserForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    class Meta():
+        model = User
         fields = {
-            'base_crypto',
-            'base_fiat',  
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2',
         }
+    field_order = [
+        'username',
+        'first_name',
+        'last_name',
+        'email',
+        'password1',
+        'password2']
+    def save(self, commit=True):
+            user = super(CreateUserForm, self).save(commit=False)
+            user.first_name = self.cleaned_data['first_name']
+            user.last_name = self.cleaned_data['last_name']
+            user.email = self.cleaned_data['email']
+
+            if commit:
+                user.save()
+
+            return user
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta():
+        model = UserProfile
+        fields = '__all__'  
+        
 
     def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
+        user = super(EditProfileForm, self).save(commit=False)
         user.base_fiat = self.cleaned_data['base_fiat']
         user.base_crypto = self.cleaned_data['base_crypto']
         user.last_spot = 30
+      
 
         if commit:
             user.save()
