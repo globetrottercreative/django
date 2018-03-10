@@ -1,19 +1,42 @@
-#loggedin-dataform {
-  margin: 40px; }
-  #loggedin-dataform h5 {
-    margin-bottom: 10px; }
+body nav button {
+  margin-left: auto;
+  margin-right: 10px; }
 
-#loginform {
+#home-bar {
   margin: 40px; }
-  #loginform form {
-    padding: 30px 20px 40px 20px;
-    max-width: 15rem; }
-    #loginform form h4 {
-      text-align: center;
-      margin-bottom: 10px; }
+  #home-bar a {
+    margin-right: 5px; }
 
-#registration-form {
-  margin: 40px;
+#login-form form {
+  margin: 40px auto;
+  padding: 20px;
   max-width: 15rem; }
+  #login-form form h5 {
+    text-align: center;
+    color: #47b2cd; }
+  #login-form form label {
+    font-weight: 600; }
+
+#newuser-form {
+  margin: 40px auto;
+  max-width: 20rem; }
+  #newuser-form form {
+    padding: 20px; }
+    #newuser-form form h5 {
+      text-align: center;
+      color: #47b2cd; }
+    #newuser-form form label {
+      font-weight: 600; }
+
+#editprofile-form {
+  margin: 40px auto;
+  max-width: 20rem; }
+  #editprofile-form form {
+    padding: 20px; }
+    #editprofile-form form h5 {
+      text-align: center;
+      color: #47b2cd; }
+    #editprofile-form form label {
+      font-weight: 600; }
 
 /*# sourceMappingURL=style.css.map */

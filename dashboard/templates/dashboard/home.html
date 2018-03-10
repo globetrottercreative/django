@@ -1,9 +1,16 @@
 {% extends 'base.html' %} {% block body%}
-<div id="loggedin-dataform">
-    <h5>Welcome {{ user.first_name }}!</h5>
-    <a href="/editprofile/">
-        <button type="button" class="btn btn-primary btn-sm">Edit Profile</button>
-    </a>
-
+<div id="home-body">
+    <div id="home-bar">
+        <div id="heading">
+            <h5>{{ user.first_name }}'s CryptoDash</h5>
+        </div>
+        <a href="/editprofile/">
+            <button type="button" class="btn btn-primary btn-sm">Edit Profile</button>
+        </a>
+        <a href="/search/">
+            <button type="button" class="btn btn-warning btn-sm">{{ profile.base_crypto }} Spot</button>
+        </a>
+        <span>Currency: {{ profile.base_fiat }}</span>
+    </div>
 </div>
 {% endblock %}

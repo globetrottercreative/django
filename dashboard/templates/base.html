@@ -26,11 +26,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/home/">Home</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/logout/">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/newuser/">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Login</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
+        <div><a href="/home/">{{ user.first_name }}</a></div>
+
     </nav>
     {% endblock %}
     <div class="container-fluid">

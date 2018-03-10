@@ -1,13 +1,14 @@
 {% extends 'base.html' %} {% load widget_tweaks %}{% block body %}
-<div id="registration-form" class="container">
-    <form action="" method="POST">
+<div id="editprofile-form" class="container">
+    <form class="border border-primary rounded" method="POST">
+        <h5>Edit Profile</h5>
         {% csrf_token %} {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %} {% for field in form.visible_fields %}
         <div class="form-group">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label> {{ field|add_class:'form-control' }} {% for error in field.errors %}
             <span class="help-block">{{ error }}</span> {% endfor %}
         </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+        <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
     </form>
 </div>
 {% endblock %}

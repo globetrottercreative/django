@@ -3,9 +3,14 @@ from .forms import EditProfileForm, CreateUserForm
 from dashboard.models import UserProfile
 # Create your views here.
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('/');
+
     user = request.user
+    profile = UserProfile.objects.get(base_user=user)
     data = {
-        'user': user
+        'user': user,
+        'profile': profile,
     }
     return render(request, 'dashboard/home.html', data)
 
@@ -14,15 +19,19 @@ def newuser(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/home/')
     else:
         form = CreateUserForm()
-        args = {
+        data = {
             'form': form,
+            'user': request.user,
         }
-        return render(request, 'dashboard/newuser.html', args)
+        return render(request, 'dashboard/newuser.html', data)
 
 def editprofile(request):
+    if not request.user.is_authenticated:
+        return redirect('/');
+
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -33,9 +42,12 @@ def editprofile(request):
         form = EditProfileForm(initial={
             'base_crypto': profile.base_crypto,
             'base_fiat': profile.base_fiat,
+            'first_name': profile.base_user.first_name,
+            'last_name': profile.base_user.last_name,
+            'email': profile.base_user.email,
             })
-        args = {
+        data = {
             'form': form,
-            'user': profile
+            'user': request.user
         }
-        return render(request, 'dashboard/editprofile.html', args)
+        return render(request, 'dashboard/editprofile.html', data)
