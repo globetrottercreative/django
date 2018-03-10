@@ -1,4 +1,4 @@
-import requests
+import requests, json
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import EditProfileForm, CreateUserForm
 from dashboard.models import UserProfile
@@ -22,10 +22,50 @@ def refresh_crypto(request):
     profile = UserProfile.objects.get(base_user=user)
 
     payload = {}
-    r = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms='+profile.base_crypto+'&tsyms='+profile.base_fiat, params=payload)
-    p = r.json()
+    
+    crypto_url_payload = []
+    if profile.cc_ETH:
+        crypto_url_payload.append('ETH')
+    if profile.cc_BTC:
+        crypto_url_payload.append('BTC')
+    if profile.cc_LTC:
+        crypto_url_payload.append('LTC')
+    if profile.cc_XRP:
+        crypto_url_payload.append('XRP')
+    if profile.cc_BCH:
+        crypto_url_payload.append('BCH')
+    if profile.cc_ETC:
+        crypto_url_payload.append('ETC')
+    if profile.cc_TRX:
+        crypto_url_payload.append('TRX')
+    if profile.cc_EOS:
+        crypto_url_payload.append('EOS')
+    if profile.cc_NEO:
+        crypto_url_payload.append('NEO')
+    if profile.cc_XMR:
+        crypto_url_payload.append('XMR')
+    
+    val = ''
+    for d in crypto_url_payload:
+        val += (d+',')
+  
+    r = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + val + '&tsyms=' + profile.base_fiat, params=payload)
+    raw = json.loads(r.content)
+    
+    print(raw['ETH']['NZD'])
+
+
     data = {
-        'eth_spot': p[profile.base_fiat],
+        'spots': raw['ETH']['NZD'],
+        #'btc_spot': p['BTC'][profile.base_fiat],
+        #'ltc_spot': p['LTC'][profile.base_fiat],
+        #'xrp_spot': p['XRP'][profile.base_fiat],
+        #'bch_spot': p['BCH'][profile.base_fiat],
+        #'etc_spot': p['ETC'][profile.base_fiat],
+        #'trx_spot': p['TRX'][profile.base_fiat],
+        #'eos_spot': p['EOS'][profile.base_fiat],
+        #'neo_spot': p['NEO'][profile.base_fiat],
+        #'xmp_spot': p['XMR'][profile.base_fiat],
         'user': request.user,
         'profile': profile,
     }

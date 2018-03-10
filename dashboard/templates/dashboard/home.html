@@ -13,14 +13,19 @@
         <span>Currency: {{ profile.base_fiat }}</span>
     </div>
     <div id='data-results'>
+        {% for key in spots %}
         <div class="card" style="width: 12rem;">
             <img class="card-img-top" src="{% static 'dashboard/img/eth512.png' %}" alt="Eth Icon">
             <div class="card-body">
-                <h5 class="card-title">ETH Spot Price</h5>
-                <h3>${{ eth_spot }}</h3>
+                <h5 class="card-title">{{key}} Spot Price</h5>
+                {% for k, value in key %}
+                <p>Key:{{ k }} Value:{{ value }}</p>
+                {% endfor %}
                 <p class="card-text"><small>A spot price is the current price in the marketplace.</small></p>
             </div>
         </div>
+        {% endfor %}
+
     </div>
 </div>
 {% endblock %}
