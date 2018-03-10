@@ -7,6 +7,14 @@ body nav button {
   #home-bar a {
     margin-right: 5px; }
 
+#data-results {
+  margin: 40px; }
+  #data-results .card {
+    text-align: center; }
+    #data-results .card img {
+      margin: 10px auto;
+      max-width: 96px; }
+
 #login-form form {
   margin: 40px auto;
   padding: 20px;

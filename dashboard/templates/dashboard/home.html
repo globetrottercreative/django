@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block body%}
+{% extends 'base.html' %} {% load static %}{% block body%}
 <div id="home-body">
     <div id="home-bar">
         <div id="heading">
@@ -7,10 +7,20 @@
         <a href="/editprofile/">
             <button type="button" class="btn btn-primary btn-sm">Edit Profile</button>
         </a>
-        <a href="/search/">
-            <button type="button" class="btn btn-warning btn-sm">{{ profile.base_crypto }} Spot</button>
+        <a href="/home/refresh/">
+            <button type="button" class="btn btn-warning btn-sm">Refresh</button>
         </a>
         <span>Currency: {{ profile.base_fiat }}</span>
+    </div>
+    <div id='data-results'>
+        <div class="card" style="width: 12rem;">
+            <img class="card-img-top" src="{% static 'dashboard/img/eth512.png' %}" alt="Eth Icon">
+            <div class="card-body">
+                <h5 class="card-title">ETH Spot Price</h5>
+                <h3>${{ eth_spot }}</h3>
+                <p class="card-text"><small>A spot price is the current price in the marketplace.</small></p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

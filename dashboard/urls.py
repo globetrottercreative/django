@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^home/$', views.home, name='search_crypto'),
     url(r'^newuser/$', views.newuser, name='new_user'),
     url(r'^editprofile/$', views.editprofile, name='edit_profile'),
+    url(r'^home/refresh/$', views.refresh_crypto, name='refresh'),
 ]

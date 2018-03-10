@@ -1,6 +1,9 @@
+import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import EditProfileForm, CreateUserForm
 from dashboard.models import UserProfile
+
+
 # Create your views here.
 def home(request):
     if not request.user.is_authenticated:
@@ -10,6 +13,20 @@ def home(request):
     profile = UserProfile.objects.get(base_user=user)
     data = {
         'user': user,
+        'profile': profile,
+    }
+    return render(request, 'dashboard/home.html', data)
+
+def refresh_crypto(request):
+    user = request.user
+    profile = UserProfile.objects.get(base_user=user)
+
+    payload = {}
+    r = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms='+profile.base_crypto+'&tsyms='+profile.base_fiat, params=payload)
+    p = r.json()
+    data = {
+        'eth_spot': p[profile.base_fiat],
+        'user': request.user,
         'profile': profile,
     }
     return render(request, 'dashboard/home.html', data)

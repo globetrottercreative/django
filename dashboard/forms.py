@@ -44,10 +44,30 @@ class EditProfileForm(forms.ModelForm):
         fields = {
             'base_fiat',
             'base_crypto',
+            'track_ETH',
+            'track_BTC',
+            'track_LTC',
+            'track_XRP',
+            'track_BCH',
+            'track_ETC',
+            'track_TRX',
+            'track_EOS',
+            'track_NEO',
+            'track_XMR',
             }
         labels = {
             'base_fiat': 'Base Fiat',
             'base_crypto': 'Base Crypto',
+            'track_ETH': 'Ethereum',
+            'track_BTC': 'Bitcoin',
+            'track_LTC': 'Litecoin',
+            'track_XRP': 'Ripple',
+            'track_BCH': 'Bitcoin Cash',
+            'track_ETC': 'Etereum Classic',
+            'track_TRX': 'Tronix',
+            'track_EOS': 'EOS',
+            'track_NEO': 'NEO',
+            'track_XMR': 'Monero',
         }
     field_order = [
         'first_name',
@@ -55,6 +75,16 @@ class EditProfileForm(forms.ModelForm):
         'email',  
         'base_fiat',
         'base_crypto',
+        'track_ETH',
+        'track_BTC',
+        'track_LTC',
+        'track_XRP',
+        'track_BCH',
+        'track_ETC',
+        'track_TRX',
+        'track_EOS',
+        'track_NEO',
+        'track_XMR',
         ]
 
     def save(self, commit=True):
@@ -74,6 +104,16 @@ class EditProfileForm(forms.ModelForm):
         profile.base_user = user
         profile.base_fiat = self.cleaned_data['base_fiat']
         profile.base_crypto = self.cleaned_data['base_crypto']
+        profile.cc_ETH = self.cleaned_data['track_ETH'] 
+        profile.cc_BTC = self.cleaned_data['track_BTC']
+        profile.cc_LTC = self.cleaned_data['track_LTC']
+        profile.cc_XRP = self.cleaned_data['track_XRP']
+        profile.cc_BCH = self.cleaned_data['track_BCH']
+        profile.cc_ETC = self.cleaned_data['track_ETC']
+        profile.cc_TRX = self.cleaned_data['track_TRX']
+        profile.cc_EOS = self.cleaned_data['track_EOS']
+        profile.cc_NEO = self.cleaned_data['track_NEO']
+        profile.cc_XMR = self.cleaned_data['track_XMR']
 
         #Save To DB
         if commit:

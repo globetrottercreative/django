@@ -8,6 +8,17 @@ class UserProfile(models.Model):
     base_fiat = models.CharField(max_length=3, default='')
     base_crypto = models.CharField(max_length=3, default='')
     last_spot = models.FloatField(default=1.00)
+    cc_ETH = models.BooleanField(default=False)
+    cc_BTC = models.BooleanField(default=False)
+    cc_LTC = models.BooleanField(default=False)
+    cc_XRP = models.BooleanField(default=False)
+    cc_BCH = models.BooleanField(default=False)
+    cc_ETC = models.BooleanField(default=False)
+    cc_TRX = models.BooleanField(default=False)
+    cc_EOS = models.BooleanField(default=False)
+    cc_NEO = models.BooleanField(default=False)
+    cc_XMR = models.BooleanField(default=False)
+
     def __str__(self):
         return self.base_user.username
 
