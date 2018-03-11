@@ -1,17 +1,18 @@
 import requests, json
 from datetime import datetime
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .forms import EditProfileForm, CreateUserForm
 from dashboard.models import UserProfile
-from django.contrib.auth import authenticate, login
-
 
 def home(request):
+    #Create User and User Proflie Objects
     user = request.user
     profile = UserProfile.objects.get(base_user=user)
 
+    #Payload for HTTPRequest URL
     payload = {}
     
+    #Build the HTTPRequest URL
     crypto_url_payload = []
     if profile.cc_ETH:
         crypto_url_payload.append('ETH')
@@ -33,20 +34,22 @@ def home(request):
         crypto_url_payload.append('NEO')
     if profile.cc_XMR:
         crypto_url_payload.append('XMR')
-    
     val = ''
     for d in crypto_url_payload:
         val += (d+',')
   
+    #Make HTTP Request
     r = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + val + '&tsyms=' + profile.base_fiat, params=payload)
+    
+    #Store Response
     raw = json.loads(r.content)
 
-
-
+    #Make Coin Data Dictionary From Response
     coin_data = {}
     for r in raw:
         coin_data.update({r: raw[r][profile.base_fiat]})
 
+    #Make Base Currency Flag URI From Profile Data
     currency_url = ''
     if profile.base_fiat == 'NZD':
         currency_url = 'nz512.png'
@@ -57,6 +60,7 @@ def home(request):
     else:
         currency_url = 'nz512.png'
 
+    #Make HTML Data Package
     data = {
         'flag_url': currency_url,
         'timestamp': datetime.now(),
@@ -65,6 +69,7 @@ def home(request):
         'profile': profile,
     }
 
+    #Return View
     return render(request, 'dashboard/home.html', data)
 
 def newuser(request):
@@ -87,9 +92,13 @@ def editprofile(request):
 
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
+        print(form)
         if form.is_valid():
             form.save()
-            return redirect('../home/')
+            
+            return redirect('/home/')
+        else:
+            print('BAD FORM')
     else:
         profile = UserProfile.objects.get(base_user=request.user)
         form = EditProfileForm(initial={
