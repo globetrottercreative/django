@@ -3,21 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 # Create your models here.
-class Portfolio(models.Model):
-    ETH_Portfolio = models.IntegerField(default=0)
-    BTC_Portfolio = models.IntegerField(default=0)
-    LTC_Portfolio = models.IntegerField(default=0)
-    XRP_Portfolio = models.IntegerField(default=0)
-    BCH_Portfolio = models.IntegerField(default=0)
-    ETC_Portfolio = models.IntegerField(default=0)
-    TRX_Portfolio = models.IntegerField(default=0)
-    EOS_Portfolio = models.IntegerField(default=0)
-    NEO_Portfolio = models.IntegerField(default=0)
-    XMR_Portfolio = models.IntegerField(default=0)
-
 class UserProfile(models.Model):
     base_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    wallet = models.OneToOneField(Portfolio, on_delete=models.CASCADE)
     base_fiat = models.CharField(max_length=3, default='NZD')
     last_spot = models.FloatField(default=1.00)
     cc_ETH = models.BooleanField(default=True)
