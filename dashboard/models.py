@@ -17,7 +17,7 @@ class Portfolio(models.Model):
 
 class UserProfile(models.Model):
     base_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    wallet = models.OneToOneField(Portfolio, on_delete=models.CASCADE, default='')
+    wallet = models.OneToOneField(Portfolio, on_delete=models.CASCADE)
     base_fiat = models.CharField(max_length=3, default='NZD')
     last_spot = models.FloatField(default=1.00)
     cc_ETH = models.BooleanField(default=True)
