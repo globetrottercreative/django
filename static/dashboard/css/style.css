@@ -4,14 +4,22 @@ body nav button {
 
 #home-bar {
   margin: 40px; }
-  #home-bar a {
-    margin-right: 5px; }
+  #home-bar #heading {
+    margin-bottom: 20px; }
+    #home-bar #heading img {
+      display: inline-block;
+      margin-left: 5px; }
+    #home-bar #heading h5 {
+      display: inline-block; }
 
-#data-results {
-  margin: 40px; }
-  #data-results .card {
+#data-results .row .col {
+  text-align: center; }
+  #data-results .row .col .card {
+    margin: .5rem;
+    display: inline-block;
+    max-width: 10rem;
     text-align: center; }
-    #data-results .card img {
+    #data-results .row .col .card img {
       margin: 10px auto;
       max-width: 96px; }
 
@@ -46,5 +54,42 @@ body nav button {
       color: #47b2cd; }
     #editprofile-form form label {
       font-weight: 600; }
+    #editprofile-form form .Ethereum,
+    #editprofile-form form .Bitcoin,
+    #editprofile-form form .Litecoin,
+    #editprofile-form form .Ripple,
+    #editprofile-form form .Cash,
+    #editprofile-form form .Classic,
+    #editprofile-form form .Tronix,
+    #editprofile-form form .EOS,
+    #editprofile-form form .NEO,
+    #editprofile-form form .Monero {
+      margin-bottom: 0px; }
+      #editprofile-form form .Ethereum label,
+      #editprofile-form form .Bitcoin label,
+      #editprofile-form form .Litecoin label,
+      #editprofile-form form .Ripple label,
+      #editprofile-form form .Cash label,
+      #editprofile-form form .Classic label,
+      #editprofile-form form .Tronix label,
+      #editprofile-form form .EOS label,
+      #editprofile-form form .NEO label,
+      #editprofile-form form .Monero label {
+        padding: 0;
+        margin-bottom: 10px; }
+      #editprofile-form form .Ethereum input,
+      #editprofile-form form .Bitcoin input,
+      #editprofile-form form .Litecoin input,
+      #editprofile-form form .Ripple input,
+      #editprofile-form form .Cash input,
+      #editprofile-form form .Classic input,
+      #editprofile-form form .Tronix input,
+      #editprofile-form form .EOS input,
+      #editprofile-form form .NEO input,
+      #editprofile-form form .Monero input {
+        width: 24px;
+        height: 24px;
+        float: right;
+        display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */

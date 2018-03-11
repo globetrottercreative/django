@@ -6,9 +6,8 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):
     base_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     base_fiat = models.CharField(max_length=3, default='')
-    base_crypto = models.CharField(max_length=3, default='')
     last_spot = models.FloatField(default=1.00)
-    cc_ETH = models.BooleanField(default=False)
+    cc_ETH = models.BooleanField(default=True)
     cc_BTC = models.BooleanField(default=False)
     cc_LTC = models.BooleanField(default=False)
     cc_XRP = models.BooleanField(default=False)

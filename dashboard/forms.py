@@ -10,11 +10,15 @@ class CreateUserForm(UserCreationForm):
         fields = {
             'username',
             'email',
+            'first_name',
+            'last_name',
             'password1',
             'password2',
         }
     field_order = [
         'username',
+        'first_name',
+        'last_name',
         'email',
         'password1',
         'password2']
@@ -38,12 +42,17 @@ class EditProfileForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
-
+    CURRENCY_CHOICES= [
+        ('NZD', 'NZD'),
+        ('USD', 'USD'),
+        ('AUD', 'AUD'),
+        ('BTC', 'BTC'),
+        ]
+    base_fiat = forms.CharField(label='Base Fiat', widget=forms.Select(choices=CURRENCY_CHOICES))
     class Meta():
         model = UserProfile
         fields = {
             'base_fiat',
-            'base_crypto',
             'cc_ETH',
             'cc_BTC',
             'cc_LTC',
@@ -57,7 +66,6 @@ class EditProfileForm(forms.ModelForm):
             }
         labels = {
             'base_fiat': 'Base Fiat',
-            'base_crypto': 'Base Crypto',
             'cc_ETH': 'Ethereum',
             'cc_BTC': 'Bitcoin',
             'cc_LTC': 'Litecoin',
@@ -74,7 +82,6 @@ class EditProfileForm(forms.ModelForm):
         'last_name',    
         'email',  
         'base_fiat',
-        'base_crypto',
         'cc_ETH',
         'cc_BTC',
         'cc_LTC',
@@ -103,7 +110,6 @@ class EditProfileForm(forms.ModelForm):
         #Fill Data Model With Form and Other Data
         profile.base_user = user
         profile.base_fiat = self.cleaned_data['base_fiat']
-        profile.base_crypto = self.cleaned_data['base_crypto']
         profile.cc_ETH = self.cleaned_data['cc_ETH'] 
         profile.cc_BTC = self.cleaned_data['cc_BTC']
         profile.cc_LTC = self.cleaned_data['cc_LTC']

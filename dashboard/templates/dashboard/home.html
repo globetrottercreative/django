@@ -3,29 +3,28 @@
     <div id="home-bar">
         <div id="heading">
             <h5>{{ user.first_name }}'s CryptoDash</h5>
+            <img src="{% static 'dashboard/img/' %}{{ flag_url }}" class="img-fluid" width="42px;">
         </div>
-        <a href="/editprofile/">
-            <button type="button" class="btn btn-primary btn-sm">Edit Profile</button>
-        </a>
-        <a href="/home/refresh/">
-            <button type="button" class="btn btn-warning btn-sm">Refresh</button>
-        </a>
-        <span>Currency: {{ profile.base_fiat }}</span>
     </div>
     <div id='data-results'>
-        {% for key in spots %}
-        <div class="card" style="width: 12rem;">
-            <img class="card-img-top" src="{% static 'dashboard/img/eth512.png' %}" alt="Eth Icon">
-            <div class="card-body">
-                <h5 class="card-title">{{key}} Spot Price</h5>
-                {% for k, value in key %}
-                <p>Key:{{ k }} Value:{{ value }}</p>
-                {% endfor %}
-                <p class="card-text"><small>A spot price is the current price in the marketplace.</small></p>
+        <div class='container-fluid'>
+            <div class="row">
+                <div class="col">
+                    {% for key, value in coins.items %}
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'dashboard/img/' %}{{key}}512.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ key }}</h5>
+                            <p class="card-text">${{ value }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last Update: {{ timestamp }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-        {% endfor %}
-
     </div>
 </div>
 {% endblock %}
